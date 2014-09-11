@@ -25,6 +25,7 @@ type ConfigStore interface {
 func NewConfigStore(uri *url.URL) ConfigStore {
 	factory := map[string]func(*url.URL) ConfigStore{
 		"consul": NewConsulStore,
+		"cache": NewConsulCacheStore,
 		"etcd":   NewEtcdStore,
 	}[uri.Scheme]
 	if factory == nil {
